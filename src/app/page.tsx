@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Button } from "~/components/ui/button";
 
 import { CreatePost } from "~/app/_components/create-post";
 import { getServerAuthSession } from "~/server/auth";
@@ -38,6 +39,7 @@ export default async function Home() {
             </div>
           </Link>
         </div>
+        <Button>Hello shadcn button</Button>
         <div className="flex flex-col items-center gap-2">
           <p className="text-2xl text-white">
             {hello ? hello.greeting : "Loading tRPC query..."}
