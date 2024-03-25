@@ -4,21 +4,21 @@ import { useRouter } from "next/navigation";
 
 import { api } from "~/trpc/react";
 
-interface IDeleteTaskProps {
+interface IHardDeleteTaskProps {
   id: number;
 }
 
-export function DeleteTask({ id }: IDeleteTaskProps) {
+export function HardDeleteTask({ id }: IHardDeleteTaskProps) {
   const router = useRouter();
 
-  const deleteTask = api.task.delete.useMutation({
+  const softDelete = api.task.delete.useMutation({
     onSuccess: () => {
       router.refresh();
     },
   });
 
   const onHandleDelete = () => {
-    deleteTask.mutate({ id });
+    softDelete.mutate({ id });
   };
 
   return <button onClick={onHandleDelete}>Delete</button>;

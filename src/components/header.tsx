@@ -1,15 +1,17 @@
-import { getServerAuthSession } from "~/server/auth";
-import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
+import LogoutButton from "./auth/logout-button";
+import UserButton from "./auth/user-button";
+import { Button } from "./ui/button";
 
 const Header = async () => {
-  const session = await getServerAuthSession();
-
   return (
-    <header className="w-full">
-      <Avatar>
-        <AvatarImage src={session?.user.image ?? ""} alt="@shadcn" />
-        <AvatarFallback>{session?.user.name ?? ""}</AvatarFallback>
-      </Avatar>
+    <header className="flex w-full items-center justify-between px-10 py-5">
+      <LogoutButton>
+        <Button variant="ghost" className="text-white">
+          Log out
+        </Button>
+      </LogoutButton>
+
+      <UserButton />
     </header>
   );
 };

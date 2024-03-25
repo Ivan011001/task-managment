@@ -33,6 +33,7 @@ export const taskRouter = createTRPCRouter({
   getAll: protectedProcedure.query(async ({ ctx }) => {
     return ctx.db.task.findMany({
       where: {
+        deletedAt: null,
         createdById: ctx.session.user.id,
       },
     });
