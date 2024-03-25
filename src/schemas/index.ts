@@ -1,8 +1,10 @@
 import * as z from "zod";
 
 export const createTaskSchema = z.object({
-  title: z.string().min(1),
-  description: z.optional(z.string().min(1)),
+  title: z.string().min(1, {
+    message: "Title is required",
+  }),
+  description: z.optional(z.string()),
 });
 
 export const updateTaskSchema = z.object({

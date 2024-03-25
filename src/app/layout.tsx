@@ -4,6 +4,8 @@ import { Poppins } from "next/font/google";
 
 import { TRPCReactProvider } from "~/trpc/react";
 
+import { Toaster } from "~/components/ui/sonner";
+
 const poppins = Poppins({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -24,7 +26,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans ${poppins.variable}`}>
-        <TRPCReactProvider>{children}</TRPCReactProvider>
+        <TRPCReactProvider>
+          {children}
+          <Toaster />
+        </TRPCReactProvider>
       </body>
     </html>
   );
