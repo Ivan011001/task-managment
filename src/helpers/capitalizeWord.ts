@@ -1,5 +1,7 @@
-export function capializeWord(word: string | null | undefined) {
+export function capitalizeWord(word: string) {
   if (!word) {
-    return null;
+    return word;
   }
+
+  return word.charAt(0).toUpperCase() + word.slice(1);
 }

@@ -4,16 +4,20 @@ import { useRouter } from "next/navigation";
 
 import { api } from "~/trpc/react";
 
+import { toast } from "sonner";
+
 interface ISoftDeleteTaskProps {
+  children?: React.ReactNode;
   id: number;
 }
 
-export function SoftDeleteTask({ id }: ISoftDeleteTaskProps) {
+export function SoftDeleteTask({ id, children }: ISoftDeleteTaskProps) {
   const router = useRouter();
 
   const softDelete = api.task.softDelete.useMutation({
     onSuccess: () => {
       router.refresh();
+      toast.success("Task was deleted");
     },
   });
 
@@ -21,5 +25,9 @@ export function SoftDeleteTask({ id }: ISoftDeleteTaskProps) {
     softDelete.mutate({ id });
   };
 
-  return <button onClick={onHandleDelete}>Delete</button>;
+  return (
+    <span className="" onClick={onHandleDelete}>
+      {children}
+    </span>
+  );
 }
